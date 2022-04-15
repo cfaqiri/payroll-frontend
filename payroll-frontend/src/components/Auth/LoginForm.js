@@ -1,8 +1,14 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { useHistory } from "react-router-dom";
+import AuthContext from "../../contexts/auth-context";
 
 const LoginForm = () => {
   const usernameInputRef = useRef();
   const passwordInputRef = useRef();
+
+  const history = useHistory();
+
+  const authCtx = useContext(AuthContext);
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -20,11 +26,10 @@ const LoginForm = () => {
         "Content-Type": "application/json",
       },
     }).then((response) => {
-      // Remind myself why I'm returning this
-      console.log(response);
       return response.json();
     }).then((data) => {
-      console.log(data.token);
+      authCtx.login(data.token); 
+      history.replace("/");    
     });
   };
 
