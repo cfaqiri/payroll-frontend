@@ -1,11 +1,12 @@
+import { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
 import AuthContext from "./contexts/auth-context";
 import Layout from "./components/Layout/Layout";
-import AuthPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
-import { useContext } from "react";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -18,7 +19,10 @@ function App() {
           <HomePage />
         </Route>
         <Route path="/login">
-          <AuthPage />
+          <LoginPage />
+        </Route>
+        <Route path="/register">
+          <RegisterPage />
         </Route>
         <Route path="/profile">
           {isLoggedIn && <ProfilePage />}
