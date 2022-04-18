@@ -1,5 +1,5 @@
 # Introduction
-This project serves as a front-end for  payroll REST API. See [payrollchallenge](https://github.com/cfaqiri/payrollchallenge) for more details. 
+This project serves as a front-end for my payroll REST API. See [payrollchallenge](https://github.com/cfaqiri/payrollchallenge) for more details. 
 
 # Features
 - Users may sign in or sign up via a POST request to the backend API's '/login' or '/register' endpoints
