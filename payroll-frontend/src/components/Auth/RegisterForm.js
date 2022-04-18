@@ -1,4 +1,8 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
+
+import classes from "./AuthForm.module.css";
+
 
 const RegisterForm = () => {
   const usernameInputRef = useRef();
@@ -29,18 +33,18 @@ const RegisterForm = () => {
   };
 
   return (
-    <section>
+    <section className={classes.auth}>
       <h1>Register</h1>
       <form onSubmit={submitHandler}>
-        <div>
+        <div className={classes.control}>
           <label htmlFor="username">Username</label>
           <input type="text" id="username" required ref={usernameInputRef} />
         </div>
-        <div>
+        <div className={classes.control}>
           <label htmlFor="email">Email</label>
           <input type="email" id="email" required ref={emailInputRef} />
         </div>
-        <div>
+        <div className={classes.control}>
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -49,7 +53,12 @@ const RegisterForm = () => {
             ref={passwordInputRef}
           />
         </div>
-        <button>Sign Up</button>
+        <div className={classes.actions}>
+          <button>Sign Up</button>
+          <Link to="/login" className={classes.toggle}>
+            Login with existing account
+          </Link>
+        </div>
       </form>
     </section>
   );

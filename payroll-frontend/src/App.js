@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import RegisterPage from "./pages/RegisterPage";
+import ReportPage from "./pages/ReportPage";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -15,17 +16,22 @@ function App() {
   return (
     <Layout>
       <Switch>
-      <Route path="/" exact>
+        <Route path="/" exact>
           <HomePage />
         </Route>
         <Route path="/login">
-          <LoginPage />
+          {!isLoggedIn && <LoginPage />}
+          {isLoggedIn && <Redirect to="/" />}
         </Route>
         <Route path="/register">
           <RegisterPage />
         </Route>
         <Route path="/profile">
           {isLoggedIn && <ProfilePage />}
+          {!isLoggedIn && <Redirect to="/login" />}
+        </Route>
+        <Route path="/report">
+          {isLoggedIn && <ReportPage />}
           {!isLoggedIn && <Redirect to="/login" />}
         </Route>
         <Route path="*">

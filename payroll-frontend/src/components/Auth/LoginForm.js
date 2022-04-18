@@ -1,6 +1,8 @@
 import { useContext, useRef } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AuthContext from "../../contexts/auth-context";
+
+import classes from "./AuthForm.module.css";
 
 const LoginForm = () => {
   const usernameInputRef = useRef();
@@ -25,23 +27,25 @@ const LoginForm = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((response) => {
-      return response.json();
-    }).then((data) => {
-      authCtx.login(data.token); 
-      history.replace("/");    
-    });
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        authCtx.login(data.token);
+        history.replace("/");
+      });
   };
 
   return (
-    <section>
+    <section className={classes.auth}>
       <h1>Login</h1>
       <form onSubmit={submitHandler}>
-        <div>
+        <div className={classes.control}>
           <label htmlFor="username">Username</label>
           <input type="text" id="username" required ref={usernameInputRef} />
         </div>
-        <div>
+        <div className={classes.control}>
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -50,7 +54,12 @@ const LoginForm = () => {
             ref={passwordInputRef}
           />
         </div>
-        <button>Login</button>
+        <div className={classes.actions}>
+          <button>Login</button>
+          <Link to="/register" className={classes.toggle}>
+            Create new account
+          </Link>
+        </div>
       </form>
     </section>
   );

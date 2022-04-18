@@ -20,12 +20,19 @@ const MainNavigation = () => {
       </Link>
       <nav>
         <ul>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
+          {!isLoggedIn && (
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          )}
           {isLoggedIn && (
             <li>
               <Link to="/profile">Profile</Link>
+            </li>
+          )}
+          {isLoggedIn && (
+            <li>
+              <Link to="/report">Report</Link>
             </li>
           )}
           {isLoggedIn && (
